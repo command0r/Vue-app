@@ -1,8 +1,11 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <div id="app">
-  <button v-on:click="increase">Increase counter</button>
+  <button v-on:click="increase(2)">Increase counter</button>
   <p>{{ counter }}</p>
-  <p v-on:mousemove="updateCoordinates">Coordinates: {{ x }} / {{ y }}</p>
+  <p v-on:mousemove="updateCoordinates">Coordinates: {{ x }} / {{ y }} - 
+    <span v-on:mousemove.stop="">Dead spot</span>
+  </p>
+  <input type="text" v-on:keyup="alertMe">
 </div>
 
 <script>
@@ -14,12 +17,15 @@
      y: 0
     },
     methods: {
-        increase: function(){
-          this.counter++; 
+        increase: function(step){
+          this.counter += step; 
         },
         updateCoordinates: function(event){
           this.x = event.clientX;
           this.y = event.clientY;
+        },
+        alertMe: function(event){
+          console.log("Key stroke!")
         }
       }
     });

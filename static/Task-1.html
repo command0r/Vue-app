@@ -1,0 +1,33 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<div id="excercise">
+    <!-- Show an alert when the button gets clicked (console.log) -->
+    <div>
+        <button v-on:click="btnClick">Show alert!</button>    
+    </div>
+    <div>
+        <!-- Listen to 'keydown' event and store val in data prop -->
+        <input type="text" v-on:keydown="value = $event.target.value">
+        <p>{{ value }}</p>
+        <!-- Fire up an event on Enter -->
+        <input type="text" v-on:keydown.enter="showEventOnEnter">
+        <p>{{ value2 }}</p>
+    </div>
+</div>
+
+<script>
+    new Vue({
+        el: '#excercise',
+        data: {
+            value: '',
+            value2: ''
+        },
+        methods: {
+            btnClick: function(event){
+                console.log("Button clicked!")
+            },
+            showEventOnEnter: function(event){
+                this.value2 = event.target.value;
+            }
+        }
+    });
+</script>
